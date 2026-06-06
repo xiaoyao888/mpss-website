@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "astro": "astro",
-    "build": "astro build",
+    "build": "astro build --outDir docs",
     "dev": "astro dev",
     "preview": "astro preview",
     "sync": "astro sync"

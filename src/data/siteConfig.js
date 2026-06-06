@@ -23,6 +23,7 @@ export const companyInfo = {
 export const navLinks = [
   { id: 'home', name: '首页', href: '/' },
   { id: 'features', name: '产品能力', href: '/#features' },
+  { id: 'software', name: '解决方案', href: 'https://soft.mpss.cn/' },
   { id: 'solutions', name: '适用场景', href: '/#solutions' },
   { id: 'about', name: '公司简介', href: '/about' },
   { id: 'demo', name: '预约演示', href: '/download' },
