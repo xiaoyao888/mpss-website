@@ -1,0 +1,182 @@
+---
+import MainLayout, { siteTitle, siteDescription } from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { companyInfo, features, newsList, serviceSteps, stats, solutionList, getCategoryName } from '../data/siteConfig.js';
+
+const modules = ['小程序前台', '管理后台', '订单与会员', '权限与数据'];
+---
+<MainLayout title={siteTitle} description={siteDescription}>
+  <Header />
+
+  <main class="overflow-hidden bg-[#f6f3ea] text-slate-950 dark:bg-slate-950 dark:text-white">
+    <section class="relative pt-28 pb-16 md:pt-36 md:pb-24">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,#bff7e2_0%,transparent_28%),radial-gradient(circle_at_85%_15%,#ffd89a_0%,transparent_26%),linear-gradient(135deg,#fbf7ed_0%,#eef7ef_48%,#f8fbff_100%)] dark:bg-[radial-gradient(circle_at_20%_10%,rgba(45,212,191,.22)_0%,transparent_30%),radial-gradient(circle_at_82%_12%,rgba(251,191,36,.18)_0%,transparent_28%),linear-gradient(135deg,#020617_0%,#0f172a_58%,#03151f_100%)]"></div>
+      <div class="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.02fr_.98fr] lg:px-8">
+        <div class="flex flex-col justify-center">
+          <div class="mb-6 flex flex-wrap gap-2">
+            {modules.map((item) => (
+              <span class="rounded-full border border-slate-950/10 bg-white/70 px-4 py-2 text-xs font-black text-slate-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10 dark:text-slate-100">{item}</span>
+            ))}
+          </div>
+          <p class="text-sm font-black tracking-[0.34em] text-emerald-700 dark:text-emerald-300">SAAS MINI PROGRAM</p>
+          <h1 class="mt-5 max-w-4xl text-[2.6rem] font-black leading-[1.05] tracking-[-0.045em] text-slate-950 dark:text-white sm:text-6xl lg:text-7xl">
+            卖给客户的，
+            <span class="block text-emerald-700 dark:text-emerald-300">不只是一套代码。</span>
+          </h1>
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-700 dark:text-slate-300">
+            {companyInfo.description}
+          </p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="/download" class="group inline-flex items-center justify-center rounded-full bg-slate-950 px-8 py-4 text-base font-black text-white shadow-2xl shadow-slate-900/20 transition hover:-translate-y-1 hover:bg-emerald-700 dark:bg-white dark:text-slate-950 dark:hover:bg-emerald-200">
+              预约系统演示 <span class="ml-2 transition group-hover:translate-x-1">→</span>
+            </a>
+            <a href={`tel:${companyInfo.phone}`} class="inline-flex items-center justify-center rounded-full border border-slate-950/15 bg-white/70 px-8 py-4 text-base font-black text-slate-900 backdrop-blur transition hover:-translate-y-1 hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15">
+              电话咨询：{companyInfo.phone}
+            </a>
+          </div>
+          <div class="mt-10 grid gap-3 sm:grid-cols-3">
+            {stats.map((item) => (
+              <div class="rounded-3xl border border-white/80 bg-white/70 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10">
+                <div class="text-xs font-black uppercase tracking-wider text-slate-400">{item.label}</div>
+                <div class="mt-2 text-lg font-black text-slate-950 dark:text-white">{item.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-center lg:justify-end">
+          <div class="relative w-full max-w-[560px]">
+            <div class="rounded-[2.4rem] border border-white/80 bg-white/75 p-4 shadow-2xl shadow-slate-900/15 backdrop-blur-xl dark:border-white/10 dark:bg-white/10">
+              <div class="rounded-[2rem] bg-[#101827] p-6 text-white">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="text-xs font-black tracking-[0.3em] text-emerald-300">ADMIN CONSOLE</p>
+                    <h2 class="mt-3 text-3xl font-black">SaaS 管理后台</h2>
+                    <p class="mt-3 max-w-sm text-sm leading-6 text-slate-300">把订单、客户、商品、权限和数据放进同一个后台，交付后就能运营。</p>
+                  </div>
+                  <div class="rounded-2xl bg-white px-3 py-2 text-sm font-black text-slate-950">MPSS</div>
+                </div>
+
+                <div class="mt-8 grid gap-4 sm:grid-cols-[1fr_.72fr]">
+                  <div class="rounded-3xl bg-emerald-300 p-5 text-slate-950">
+                    <div class="text-sm font-black opacity-60">今日订单</div>
+                    <div class="mt-3 text-5xl font-black">128</div>
+                    <div class="mt-6 h-2 rounded-full bg-slate-950/10"><div class="h-2 w-3/4 rounded-full bg-slate-950"></div></div>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="rounded-3xl bg-white/10 p-4"><div class="text-xs text-slate-400">活跃用户</div><div class="mt-1 text-2xl font-black">3,842</div></div>
+                    <div class="rounded-3xl bg-white/10 p-4"><div class="text-xs text-slate-400">门店/商户</div><div class="mt-1 text-2xl font-black">26</div></div>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-3 gap-3 text-sm font-bold text-slate-300">
+                  <div class="rounded-2xl bg-white/10 p-4">订单管理</div>
+                  <div class="rounded-2xl bg-white/10 p-4">会员体系</div>
+                  <div class="rounded-2xl bg-white/10 p-4">权限配置</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="bg-[#f6f3ea] py-16 dark:bg-slate-950 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <div>
+            <p class="text-sm font-black tracking-[0.28em] text-emerald-700 dark:text-emerald-300">PRODUCT</p>
+            <h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 dark:text-white md:text-5xl">一套能拿去卖的 SaaS 系统。</h2>
+          </div>
+          <p class="text-lg leading-8 text-slate-600 dark:text-slate-300">官网不强调“我们会写代码”，而是强调客户真正关心的交付物：小程序、后台、模块、权限、数据、上线和后续扩展。</p>
+        </div>
+
+        <div class="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, index) => (
+            <article class={`min-h-[270px] rounded-[2rem] p-6 transition hover:-translate-y-2 ${index === 0 ? 'bg-slate-950 text-white dark:bg-emerald-300 dark:text-slate-950' : 'border border-slate-950/5 bg-white text-slate-950 shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-white'}`}>
+              <div class="flex items-center justify-between">
+                <span class="text-4xl">{feature.icon}</span>
+                <span class="text-sm font-black opacity-40">0{index + 1}</span>
+              </div>
+              <h3 class="mt-10 text-2xl font-black tracking-[-0.03em]">{feature.title}</h3>
+              <p class={`mt-4 text-sm leading-7 ${index === 0 ? 'text-white/75 dark:text-slate-700' : 'text-slate-600 dark:text-slate-300'}`}>{feature.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" class="bg-[#101827] py-16 text-white md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
+          <div>
+            <p class="text-sm font-black tracking-[0.28em] text-emerald-300">SOLUTIONS</p>
+            <h2 class="mt-4 text-4xl font-black tracking-[-0.04em] md:text-5xl">适合这些业务直接套用或改造。</h2>
+            <p class="mt-6 text-lg leading-8 text-slate-300">标准 SaaS 系统不等于所有行业都一模一样。我们先用通用底座承接订单、用户和后台，再按行业补业务差异。</p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {solutionList.map((item, index) => (
+              <article class={`rounded-[2rem] p-6 ${index === 0 ? 'bg-emerald-300 text-slate-950' : 'border border-white/10 bg-white/8 backdrop-blur'}`}>
+                <div class="text-sm font-black opacity-50">SCENE 0{index + 1}</div>
+                <h3 class="mt-8 text-2xl font-black">{item.title}</h3>
+                <p class={`mt-4 text-sm leading-7 ${index === 0 ? 'text-slate-700' : 'text-slate-300'}`}>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-16 dark:bg-slate-950 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div class="rounded-[2.5rem] bg-[#f6f3ea] p-8 shadow-xl shadow-slate-900/5 dark:bg-slate-900">
+            <p class="text-sm font-black tracking-[0.28em] text-emerald-700 dark:text-emerald-300">DELIVERY</p>
+            <h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 dark:text-white">从演示到上线，按交付路径推进。</h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">先确认系统是否适合你的业务，再决定标准交付、配置交付或定制开发，避免一开始就把预算花在不确定需求上。</p>
+          </div>
+          <div class="space-y-4">
+            {serviceSteps.map((step, index) => (
+              <div class="grid gap-4 rounded-[2rem] border border-slate-950/5 bg-[#f8fbff] p-5 dark:border-white/10 dark:bg-slate-900 sm:grid-cols-[90px_1fr] sm:items-center">
+                <div class="text-5xl font-black text-emerald-700 dark:text-emerald-300">0{index + 1}</div>
+                <div>
+                  <h3 class="text-2xl font-black text-slate-950 dark:text-white">{step.title}</h3>
+                  <p class="mt-2 leading-7 text-slate-600 dark:text-slate-300">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#f6f3ea] py-16 dark:bg-slate-950 md:py-24" id="news">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="text-sm font-black tracking-[0.28em] text-emerald-700 dark:text-emerald-300">NEWS</p>
+            <h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 dark:text-white md:text-5xl">系统交付与行业观点</h2>
+          </div>
+          <a href="/news" class="inline-flex w-fit rounded-full border border-slate-950/10 px-6 py-3 font-black text-slate-900 transition hover:bg-slate-950 hover:text-white dark:border-white/10 dark:text-white dark:hover:bg-white dark:hover:text-slate-950">查看全部</a>
+        </div>
+
+        <div class="mt-10 grid gap-5 lg:grid-cols-4">
+          {newsList.slice(0, 4).map((news, index) => (
+            <a href={`/article/${news.id}/`} class={`group rounded-[2rem] p-6 transition hover:-translate-y-2 ${index === 0 ? 'bg-[#fff0c8] lg:col-span-2 dark:bg-slate-900' : 'bg-white dark:bg-slate-900'}`}>
+              <div class="flex items-center gap-2 text-xs font-black text-slate-400">
+                {news.isTop && <span class="rounded-full bg-rose-100 px-2 py-1 text-rose-600 dark:bg-rose-950 dark:text-rose-300">置顶</span>}
+                <span>{getCategoryName(news.category)}</span>
+                <time>{news.date}</time>
+              </div>
+              <h3 class={`${index === 0 ? 'text-3xl' : 'text-xl'} mt-8 font-black tracking-[-0.04em] text-slate-950 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300`}>{news.title}</h3>
+              <p class="mt-4 line-clamp-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{news.summary}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</MainLayout>

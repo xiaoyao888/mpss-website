@@ -1,0 +1,87 @@
+---
+import MainLayout, { siteTitle } from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { companyInfo, features, serviceSteps, solutionList } from '../data/siteConfig.js';
+
+const pageTitle = `公司简介 - ${siteTitle}`;
+const pageDescription = `了解${companyInfo.fullName}的 SaaS 小程序与后台管理系统交付能力、联系方式与企业资质。`;
+---
+<MainLayout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main>
+    <section class="bg-gradient-to-br from-emerald-50 to-white pt-28 pb-14 dark:from-slate-950 dark:to-slate-900 md:pt-36">
+      <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <p class="text-sm font-black tracking-widest text-emerald-700">ABOUT MPSS</p>
+        <h1 class="mt-3 text-4xl font-black text-slate-950 dark:text-white md:text-5xl">公司简介</h1>
+        <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">{companyInfo.name} · {companyInfo.tagline}</p>
+      </div>
+    </section>
+
+    <section class="bg-white py-16 dark:bg-slate-950 md:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-black text-slate-950 dark:text-white">关于{companyInfo.name}</h2>
+        <div class="mt-6 space-y-5 text-lg leading-8 text-slate-600 dark:text-slate-300">
+          <p>{companyInfo.description}</p>
+          <p>我们更关注系统是否能真正交付到业务里：小程序是否能承接客户入口，后台是否能让运营人员独立处理订单、用户、商品、营销和权限，数据是否能支持经营判断。</p>
+          <p>如果客户已经有明确业务流程，可基于标准 SaaS 底座进行二次开发；如果还在验证阶段，则建议先用标准模块快速上线，降低试错成本。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-50 py-16 dark:bg-slate-900 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-center text-3xl font-black text-slate-950 dark:text-white">产品能力</h2>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((feature) => (
+            <article class="rounded-3xl bg-white p-6 shadow-sm dark:bg-slate-800">
+              <div class="text-4xl">{feature.icon}</div>
+              <h3 class="mt-4 text-xl font-black text-slate-950 dark:text-white">{feature.title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{feature.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-16 dark:bg-slate-950 md:py-20">
+      <div class="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div class="rounded-3xl border border-slate-100 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
+          <h2 class="text-2xl font-black text-slate-950 dark:text-white">企业资质</h2>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div><dt class="font-bold text-slate-400">公司全称</dt><dd class="mt-1 text-slate-800 dark:text-slate-100">{companyInfo.fullName}</dd></div>
+            <div><dt class="font-bold text-slate-400">统一社会信用代码</dt><dd class="mt-1 text-slate-800 dark:text-slate-100">{companyInfo.license}</dd></div>
+            <div><dt class="font-bold text-slate-400">ICP备案</dt><dd class="mt-1 text-slate-800 dark:text-slate-100">{companyInfo.icp}</dd></div>
+            <div><dt class="font-bold text-slate-400">地址</dt><dd class="mt-1 text-slate-800 dark:text-slate-100">{companyInfo.address}</dd></div>
+          </dl>
+        </div>
+        <div class="rounded-3xl border border-slate-100 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
+          <h2 class="text-2xl font-black text-slate-950 dark:text-white">交付流程</h2>
+          <div class="mt-6 space-y-5">
+            {serviceSteps.map((step, index) => (
+              <div class="flex gap-4">
+                <span class="font-black text-emerald-700 dark:text-emerald-300">0{index + 1}</span>
+                <div><h3 class="font-extrabold text-slate-900 dark:text-white">{step.title}</h3><p class="text-sm leading-6 text-slate-600 dark:text-slate-300">{step.description}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-50 py-16 dark:bg-slate-900 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-center text-3xl font-black text-slate-950 dark:text-white">适用场景</h2>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {solutionList.map((item) => (
+            <article class="rounded-3xl bg-white p-6 shadow-sm dark:bg-slate-800">
+              <h3 class="text-xl font-black text-slate-950 dark:text-white">{item.title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</MainLayout>

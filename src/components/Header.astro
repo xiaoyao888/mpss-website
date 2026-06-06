@@ -1,0 +1,58 @@
+---
+import LogoName from '../components/LogoName.astro';
+import { navLinks, companyInfo } from '../data/siteConfig.js';
+---
+<header class="fixed inset-x-0 top-0 z-50 border-b border-white/40 bg-white/90 shadow-sm backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/85" id="main-header">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <LogoName />
+
+    <nav class="hidden items-center gap-1 md:flex" aria-label="主导航">
+      {navLinks.map((link) => (
+        <a href={link.href} class="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-sky-50 hover:text-sky-700 dark:text-slate-200 dark:hover:bg-sky-950/60 dark:hover:text-sky-300">
+          {link.name}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center gap-3 md:flex">
+      <a href={`tel:${companyInfo.phone}`} class="rounded-full bg-sky-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-sky-700">
+        电话咨询
+      </a>
+      <button id="theme-toggle-header" onclick="window.toggleTheme && window.toggleTheme()" class="rounded-full p-2 text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800" aria-label="切换主题">
+        <span class="block dark:hidden">☾</span>
+        <span class="hidden dark:block">☀</span>
+      </button>
+    </div>
+
+    <div class="flex items-center gap-2 md:hidden">
+      <button id="theme-toggle-header-mobile" onclick="window.toggleTheme && window.toggleTheme()" class="rounded-full p-2 text-slate-600 dark:text-slate-300" aria-label="切换主题">
+        <span class="block dark:hidden">☾</span>
+        <span class="hidden dark:block">☀</span>
+      </button>
+      <button id="mobile-menu-btn" class="rounded-full p-2 text-slate-600 dark:text-slate-300" aria-label="打开菜单" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white/95 px-4 py-3 dark:border-slate-800 dark:bg-slate-950/95 md:hidden">
+    {navLinks.map((link) => (
+      <a href={link.href} class="block rounded-xl px-4 py-3 text-base font-semibold text-slate-700 hover:bg-sky-50 hover:text-sky-700 dark:text-slate-200 dark:hover:bg-slate-800">
+        {link.name}
+      </a>
+    ))}
+    <a href={`tel:${companyInfo.phone}`} class="mt-2 block rounded-xl bg-sky-600 px-4 py-3 text-center font-bold text-white">电话咨询：{companyInfo.phone}</a>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    button?.addEventListener('click', () => {
+      const isHidden = menu?.classList.toggle('hidden');
+      button.setAttribute('aria-expanded', String(!isHidden));
+    });
+    menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => menu.classList.add('hidden')));
+  });
+</script>

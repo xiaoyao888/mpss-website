@@ -1,0 +1,26 @@
+---
+import MainLayout, { siteTitle } from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { newsList } from '../data/siteConfig.js';
+---
+<MainLayout title={`文章详情 - ${siteTitle}`} description="朔州秒派科技新闻文章详情页。">
+  <Header />
+  <main class="min-h-screen bg-white px-4 pt-28 dark:bg-slate-950 md:pt-36">
+    <section class="mx-auto max-w-3xl rounded-3xl bg-slate-50 p-8 text-center dark:bg-slate-900">
+      <h1 class="text-3xl font-black text-slate-950 dark:text-white">文章详情</h1>
+      <p class="mt-4 text-slate-600 dark:text-slate-300">请选择一篇新闻文章查看详情。</p>
+      <div class="mt-8 grid gap-3 text-left">
+        {newsList.map((article) => (
+          <a href={`/article/${article.id}/`} class="rounded-2xl bg-white p-4 font-bold text-slate-800 transition hover:text-emerald-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:text-emerald-300">{article.title}</a>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</MainLayout>
+
+<script>
+  const id = new URLSearchParams(location.search).get('id');
+  if (id) location.replace(`/article/${encodeURIComponent(id)}/`);
+</script>

@@ -1,0 +1,131 @@
+---
+import '../styles/global.css';
+import ThemeIsland from '../Island/ThemeIsland.jsx';
+import QuicklyUpButton from '../Island/quicklyup.jsx';
+import { SEO } from 'astro-seo';
+import { site, companyInfo, features, solutionList } from '../data/siteConfig.js';
+
+export const siteTitle = site.title;
+export const siteDescription = site.description;
+export const siteKeywords = site.keywords;
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = siteTitle,
+  description = siteDescription,
+  ogImage,
+  canonicalURL: pageCanonicalURL,
+} = Astro.props;
+
+const baseSiteURL = Astro.site?.toString().replace(/\/$/, '') || site.url;
+const canonicalURL = pageCanonicalURL || new URL(Astro.url.pathname, baseSiteURL).href;
+const defaultOgImage = new URL('/images/logo.png', baseSiteURL).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: companyInfo.name,
+    legalName: companyInfo.fullName,
+    url: site.url,
+    logo: new URL('/images/logo.png', baseSiteURL).href,
+    email: companyInfo.email,
+    telephone: companyInfo.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: companyInfo.address,
+      addressCountry: 'CN',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: site.name,
+    url: site.url,
+    inLanguage: 'zh-CN',
+    description: site.description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: `${companyInfo.name}小程序与后台管理系统`,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, WeChat Mini Program',
+    description: companyInfo.description,
+    provider: {
+      '@type': 'Organization',
+      name: companyInfo.name,
+      url: site.url,
+    },
+    featureList: features.map((item) => item.title),
+    audience: {
+      '@type': 'Audience',
+      audienceType: solutionList.map((item) => item.title).join('、'),
+    },
+  },
+];
+const jsonLdScript = JSON.stringify(jsonLd).replace(/</g, '\\u003c');
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalURL}
+      openGraph={{
+        basic: {
+          title,
+          type: 'website',
+          image: ogImage || defaultOgImage,
+          url: canonicalURL,
+        },
+      }}
+      twitter={{
+        card: 'summary',
+        title,
+        description,
+        image: ogImage || defaultOgImage,
+      }}
+      extend={{
+        meta: [
+          { name: 'keywords', content: siteKeywords },
+          { name: 'theme-color', content: '#047857' },
+        ],
+      }}
+    />
+    <script type="application/ld+json" set:html={jsonLdScript} />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content={site.name} />
+    <meta name="format-detection" content="telephone=no" />
+    <script is:inline>
+      (function() {
+        const key = 'zywe-theme-preference';
+        function preferDark() {
+          return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+        try {
+          const cached = JSON.parse(localStorage.getItem(key) || 'null');
+          const mode = cached?.mode || 'system';
+          document.documentElement.classList.toggle('dark', mode === 'dark' || (mode === 'system' && preferDark()));
+        } catch (_) {
+          document.documentElement.classList.toggle('dark', preferDark());
+        }
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+    <slot />
+    <ThemeIsland client:load />
+    <QuicklyUpButton client:visible />
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 背景渐变 -->
+    <linearGradient id="bgGradient" x1="50" y1="50" x2="462" y2="462" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0ea5e9" />
+      <stop offset="0.5" stop-color="#0284c7" />
+      <stop offset="1" stop-color="#0369a1" />
+    </linearGradient>
+    <!-- 水滴渐变 -->
+    <linearGradient id="dropGradient" x1="180" y1="80" x2="280" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="0.4" stop-color="#e0f2fe" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#bae6fd" stop-opacity="0.7" />
+    </linearGradient>
+    <!-- 高光渐变 -->
+    <radialGradient id="highlight" cx="35%" cy="30%" r="30%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+    <!-- 阴影滤镜 -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  
+  <!-- 背景圆 -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)" filter="url(#shadow)" />
+  
+  <!-- 水滴主体 -->
+  <path d="M256 80 C256 80 160 230 160 320 C160 373.5 203 416 256 416 C309 416 352 373.5 352 320 C352 230 256 80 256 80Z" fill="url(#dropGradient)" />
+  
+  <!-- 水滴高光 -->
+  <ellipse cx="225" cy="260" rx="35" ry="50" fill="url(#highlight)" />
+  
+  <!-- 小水滴装饰 -->
+  <circle cx="145" cy="180" r="20" fill="url(#dropGradient)" opacity="0.6" />
+  <circle cx="380" cy="150" r="14" fill="url(#dropGradient)" opacity="0.4" />
+  <circle cx="400" cy="350" r="10" fill="url(#dropGradient)" opacity="0.3" />
+  
+  <!-- 波纹装饰 -->
+  <g opacity="0.3">
+    <ellipse cx="200" cy="430" rx="50" ry="8" fill="none" stroke="#bae6fd" stroke-width="2" />
+    <ellipse cx="310" cy="430" rx="40" ry="6" fill="none" stroke="#bae6fd" stroke-width="2" />
+  </g>
+</svg>
