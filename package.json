@@ -1,0 +1,56 @@
+{
+  "name": "mpss-official-site",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "朔州秒派科技官方网站 - 小程序与后台管理系统解决方案",
+  "keywords": [
+    "小程序开发",
+    "后台管理系统",
+    "管理后台",
+    "商城小程序",
+    "Astro"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "sync": "astro sync"
+  },
+  "dependencies": {
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^6.4.4",
+    "astro-seo": "^1.1.0",
+    "pnpm": "^11.5.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "autoprefixer": "^10.4.21",
+    "chalk": "^5.4.1",
+    "cheerio": "^1.0.0",
+    "p-limit": "^6.2.0",
+    "postcss": "^8.5.3",
+    "sharp": "^0.34.2",
+    "svgo": "^3.3.2",
+    "tailwindcss": "^3.4.17",
+    "terser": "^5.39.2",
+    "tsx": "^4.19.4",
+    "undici": "^7.10.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  },
+  "overrides": {
+    "yaml-language-server": "1.23.0",
+    "yaml": "2.9.0"
+  }
+}
